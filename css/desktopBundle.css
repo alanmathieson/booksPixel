@@ -1,0 +1,50 @@
+.container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	height: 100%;
+}
+.bookMain__Area {
+	-webkit-box-flex: 1;
+	    -ms-flex-positive: 1;
+	        flex-grow: 1;
+}
+* { 
+	margin:0; 
+	padding:0;
+}
+html {
+	
+}
+/*Text*/
+h1 {
+	font-weight: 400;
+}
+h2 {
+	font-weight: 400;
+	font-size: 18px;
+}
+h3 {
+	font-weight: 400;
+	font-size: 16px;
+}
+h4 {
+	font-weight: 400;
+	font-size: 14px;
+}
+label {
+	font-size: 12px;
+}
+p {
+	font-size: 13px;
+}
+.textSmall {
+	font-size: 10px;
+}
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
