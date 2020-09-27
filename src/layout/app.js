@@ -18,8 +18,7 @@ export class App extends Component {
 
 		ipcRenderer.send('get-keys-object', 'send');
 		ipcRenderer.on('get-keys-object', (event, oKeys) => {
-			console.log(oKeys);
-			this.googleKey = JSON.parse(oKeys).googleKey;
+			this.googleKey = oKeys.googleKey;
 		});
 	}
 
@@ -37,12 +36,6 @@ export class App extends Component {
 						<GoogleBooks
 							googleKey={this.googleKey}
 						/>
-					</Grid>
-					<Grid
-						className='bookMain__Area'
-						item
-						>
-						
 					</Grid>
 				</Grid>
     	</div>
