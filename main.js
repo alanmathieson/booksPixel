@@ -17,6 +17,7 @@ let oKeys;
 fs.readFile( __dirname + '/config/keys.txt', function (err, data) {
 	if (err) {log.warn('error on loading keys.txt', err)}
 	oKeys = JSON.parse(data);
+	log.info('oKeys', oKeys)
 	connectMongo();
 });
 
@@ -32,17 +33,19 @@ let bookCollections;
 
 const connectMongo = () => {
 	MongoClient.connect(oKeys.mongoURI, (err, client) => {
-		err ? log.warn('connected with Mongo') : log.warn('connected with Mongo');
+		err ? log.warn('error with Mongo', err) : log.warn('connected with Mongo');
 		db = client.db('booksPixeldb');
 		// get the list of collections
 		db.listCollections().toArray((err, items) => {
 			bookCollections = items;
-			log.warn(items)
 		});
 	}); 
 }
 
 ipcMain.on('mongo-listCollections', (event, collection) => {
+	db.listCollections().toArray((err, items) => {
+		bookCollections = items;
+	});
 	event.reply('mongo-listCollections', bookCollections);
 })
 

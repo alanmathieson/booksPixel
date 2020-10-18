@@ -1,16 +1,16 @@
 const electron = window.require('electron');
 const ipcRenderer = electron.ipcRenderer;
 const mongo = {};
-const bookPixelCollections = [];
-
-ipcRenderer.send('mongo-listCollections', '');
-ipcRenderer.on('mongo-listCollections', (event, collections) => {
-	bookPixelCollections = collections;
-});
-
+let bookPixelCollections = [];
 
 const getCollections = () => {
-	return bookPixelCollections;
+	ipcRenderer.send('mongo-listCollections', '');
+	return new Promise((resolve, reject) => {
+		ipcRenderer.on('mongo-listCollections', (event, collections) => {
+			bookPixelCollections = collections;
+			resolve(collections);
+		});
+	})
 }
 mongo.getCollections = getCollections;
 
